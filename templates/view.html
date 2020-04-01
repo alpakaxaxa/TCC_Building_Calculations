@@ -23,7 +23,7 @@
     <h2>View</h>
     {%for record in records %} 
   
-    <li>{{ record.uID }}. {{ record.buildingCubicMeters }}, {{ record.buildingType }}</li> 
+    <li>{{ record['buildingCubicMeters'] }}, {{ record['buildingType'] }}</li> 
 {%endfor%} 
   </div>
 </body>

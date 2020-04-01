@@ -56,9 +56,6 @@ class BuildingInformationData:
             buildingInformationEntries.append(b)
         return buildingInformationEntries
 
-    def value(self):
-        return "1000"
-
 class BuildingInformation:
     def __init__(self, uID, buildingUsage, buildingType, buildingCubicMeters, 
     buildingConstructionType, buildingStandard, buildingTerrain):
@@ -70,9 +67,36 @@ class BuildingInformation:
         self.buildingStandard = buildingStandard
         self.buildingTerrain = buildingTerrain
 
-    def calculateValue(self):
-        return 
+    def valueCalculate(self):
+        return 1000
+
+    def nameBuildingUsage(self):
+        namesBuildingUsage = ["Family house", "Multi family house (3-4 Units)", "Multi generation house", "Muliti family house (6-12 units)"]
+        return namesBuildingUsage[self.buildingUsage-1]
     
+    def nameBuildingType(self):
+        namesBuildingType = ["New building", "Conversion", "Extension"]
+        return namesBuildingType[self.buildingType-1]
+    
+    def nameBuildingConstructionType(self):
+        namesBuildingConstructionType = ["Solid construction", "Timber construction", "Steel construction"]
+        return namesBuildingConstructionType[self.buildingConstructionType-1]
+    
+    def nameBuildingStandard(self):
+        namesBuildingStandard = ["Low", "Medium", "High"]
+        return namesBuildingStandard[self.buildingStandard-1]
+
+    def nameBuildingTerrain(self):
+        namesBuildingTerrain = ["Flat", "Hillside"]
+        return namesBuildingTerrain[self.buildingTerrain-1]
+
+    def templateBuildingInformation(self):
+        return {"buildingUsage": self.nameBuildingUsage(),
+        "buildingType": self.nameBuildingType(), "buildingCubicMeters": self.buildingCubicMeters, 
+        "buildingConstructionType": self.nameBuildingConstructionType(), "buildingStandard": self.nameBuildingStandard(), 
+        "buildingTerrain": self.nameBuildingTerrain(), "buildingValue": self.valueCalculate()}
+
+
     def __str__(self):
         return 'BuildingInformation(uID: '+str(self.uID)+', buildingType: '+ self.buildingType + ')'
     

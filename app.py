@@ -13,7 +13,11 @@ def view():
     cookieRecordUIDs = cookieGetRecordUIDs(request.cookies)
     buildingInformationData = buildingInformation.BuildingInformationData('data.json')
     records = buildingInformationData.buildingInformationRecords(cookieRecordUIDs)
-    return render_template('view.html', records=records)
+    templateRecords = []
+    for record in records:
+        templateRecords.append(record.templateBuildingInformation())
+
+    return render_template('view.html', records=templateRecords)
 
 @app.route('/addRecord', methods=["POST"])
 def addRecord():
@@ -30,16 +34,6 @@ def addRecord():
         response = make_response(redirect(url_for('view')))
         response = cookieSet(response, request.cookies, uID)
         return response
-
-def calculateValue(buildingCubicMeters, buildingType):
-    multiplicator = 0
-    if type == "house":
-        multiplicator = 1.5
-    elif type == "extension":
-        multiplicator = 1
-    elif type == "appartment":
-        multiplicator = 0.8
-    return buildingCubicMeters*1000*multiplicator
 
 def cookieSet(response, cookiesDictionary, uID):
     timeStamp = str(datetime.now())
