@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Finally New</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <navbar>
+    <div class="navbar">
+      <div class="navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/view">Calculations</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo_modern.png') }}" width="250">
+      </div>
+    </div>
+  </navbar>
+  <div class="container">
+    <div>
+      <h1>Calculate Construction Costs</h1>
+    </div>
+    <div class="form">
+      <form method="POST" action="/addRecord" id="buildingInformationForm">
+        <div class="formField">
+          <select name="buildingUsage" id="buildingUsage">
+            <option value="1">Family house</option>
+            <option value="2">Multi family house (3-4 units)</option>
+            <option value="3">Multi generation house</option>
+            <option value="4">Multi family house (6-12 units)</option>
+          </select>
+          <label for="buildingUsage">What do you want</label>
+        </div>
+        <div class="formField">
+          <select name="buildingType" id="buildingType">
+            <option value="1">New building</option>
+            <option value="2">Conversion</option>
+            <option value="3">Extension</option>
+          </select>
+          <label for="buildingType">What do you want</label>
+        </div>
+        <div class="formField">
+          <input type="number" name="buildingCubicMeters" id="buildingCubicMeters">
+          <label for="buildingCubicMeters">How many Cubic Meters</label>
+        </div>
+        <div class="formField">
+          <select name="buildingConstructionType" id="buildingConstructionType">
+            <option value="1">Solid construction</option>
+            <option value="2">Timber construction</option>
+            <option value="3">Steel construction</option>
+          </select>
+          <label for="buildingConstructionType">What do you want</label>
+        </div>
+        <div class="formField">
+          <select name="buildingStandard" id="buildingStandard">
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+          <label for="buildingStandard">What do you want</label>
+        </div>
+        <div class="formField">
+          <select name="buildingTerrain" id="buildingTerrain">
+            <option value="1">Flat</option>
+            <option value="2">Hillside</option>
+          </select>
+          <label for="buildingType">What do you want</label>
+        </div>
+        <div class="formField">
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/id.js') }}"></script>
+  </script>
+
+</body>
+
+</html>
