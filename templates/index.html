@@ -35,7 +35,7 @@
     <div class="form">
       <form method="POST" action="/addRecord" id="buildingInformationForm">
         <div class="formField">
-          <select name="buildingUsage" id="buildingUsage">
+          <select name="buildingUsage" id="buildingUsage" value="{{ record.buildingUsage }}">
             <option value="1">Family house</option>
             <option value="2">Multi family house (3-4 units)</option>
             <option value="3">Multi generation house</option>
@@ -44,7 +44,7 @@
           <label for="buildingUsage">What do you want</label>
         </div>
         <div class="formField">
-          <select name="buildingType" id="buildingType">
+          <select name="buildingType" id="buildingType" value="{{ record.buildingType }}">
             <option value="1">New building</option>
             <option value="2">Conversion</option>
             <option value="3">Extension</option>
@@ -52,19 +52,19 @@
           <label for="buildingType">What do you want</label>
         </div>
         <div class="formField">
-          <input type="number" name="buildingCubicMeters" id="buildingCubicMeters">
+          <input type="number" name="buildingCubicMeters" id="buildingCubicMeters" value="{{ record.buildingCubicMeters }}">
           <label for="buildingCubicMeters">How many Cubic Meters</label>
         </div>
         <div class="formField">
-          <select name="buildingConstructionType" id="buildingConstructionType">
-            <option value="1">Solid construction</option>
-            <option value="2">Timber construction</option>
-            <option value="3">Steel construction</option>
+          <select name="buildingConstructionType" id="buildingConstructionType" value="{{ record.buildingConstructionType }}">
+            <option value="1" {% if record.buildingConstructionType == 1 %}default{% else %}{% endif %}>Solid construction</option>
+            <option value="2" {% if record.buildingConstructionType == 2 %}default{% endif %}>Timber construction</option>
+            <option value="3" {% if record.buildingConstructionType == 3 %}default{% endif %}>Steel construction</option>
           </select>
           <label for="buildingConstructionType">What do you want</label>
         </div>
         <div class="formField">
-          <select name="buildingStandard" id="buildingStandard">
+          <select name="buildingStandard" id="buildingStandard" value="{{ record.buildingStandard }}">
             <option value="1">Low</option>
             <option value="2">Medium</option>
             <option value="3">High</option>
@@ -72,7 +72,7 @@
           <label for="buildingStandard">What do you want</label>
         </div>
         <div class="formField">
-          <select name="buildingTerrain" id="buildingTerrain">
+          <select name="buildingTerrain" id="buildingTerrain" value="{{ record.buildingTerrain }}">
             <option value="1">Flat</option>
             <option value="2">Hillside</option>
           </select>

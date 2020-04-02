@@ -2,11 +2,15 @@ from flask import Flask, render_template, redirect, url_for, request, make_respo
 from datetime import datetime
 import json
 import buildingInformation
+from buildingInformation import BuildingInformation
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    uID = request.args.get('uID')
+    buildingInformationData = buildingInformation.BuildingInformationData('data.json')
+    record = buildingInformationData.buildingInformationRecord(uID)
+    return render_template('index.html', record=record)
 
 @app.route('/view')
 def view():
@@ -16,21 +20,15 @@ def view():
     templateRecords = []
     for record in records:
         templateRecords.append(record.templateBuildingInformation())
-
     return render_template('view.html', records=templateRecords)
 
 @app.route('/addRecord', methods=["POST"])
 def addRecord():
     if request.method == "POST":
-        buildingUsage = int(request.form['buildingUsage'])
-        buildingType = int(request.form['buildingType'])
-        buildingCubicMeters = int(request.form['buildingCubicMeters'])
-        buildingConstructionType = int(request.form['buildingConstructionType'])
-        buildingStandard = int(request.form['buildingStandard'])
-        buildingTerrain = int(request.form['buildingTerrain'])
         buildingInformationData = buildingInformation.BuildingInformationData('data.json')
-        uID = buildingInformationData.addRecord(buildingUsage, buildingType, buildingCubicMeters, buildingConstructionType, 
-        buildingStandard, buildingTerrain)
+        uID = buildingInformationData.addRecord(int(request.form['buildingUsage']), int(request.form['buildingType']), 
+        int(request.form['buildingCubicMeters']), int(request.form['buildingConstructionType']), 
+        int(request.form['buildingStandard']), int(request.form['buildingTerrain']))
         response = make_response(redirect(url_for('view')))
         response = cookieSet(response, request.cookies, uID)
         return response
@@ -57,6 +55,7 @@ def cookieGetRecordUIDs(cookiesDictionary):
         cookieRecordUIDs.append(cookiesDictionary[cookie])
     return cookieRecordUIDs
 
-
 if __name__ == '__main__':
     app.run(debug=True)
+
+    

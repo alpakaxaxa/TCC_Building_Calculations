@@ -2,9 +2,11 @@ import json
 import uuid
 import os
 
+# Collection of BuildingInformation objects saved in local json file
 class BuildingInformationData:
     def __init__(self, filePath):
         self.filePath = filePath
+    # Check if file has content. Additional checks to be implemented
     def initFile(self):
         if os.stat(self.filePath).st_size == 0:
             with open(self.filePath, 'w') as file:
@@ -56,6 +58,7 @@ class BuildingInformationData:
             buildingInformationEntries.append(b)
         return buildingInformationEntries
 
+# Class to manage and calculate price of buildings
 class BuildingInformation:
     def __init__(self, uID, buildingUsage, buildingType, buildingCubicMeters, 
     buildingConstructionType, buildingStandard, buildingTerrain):
@@ -66,7 +69,7 @@ class BuildingInformation:
         self.buildingConstructionType = buildingConstructionType
         self.buildingStandard = buildingStandard
         self.buildingTerrain = buildingTerrain
-
+    # 1000 is placeholder value as calculation not yet defined
     def valueCalculate(self):
         return 1000
 
@@ -89,9 +92,9 @@ class BuildingInformation:
     def nameBuildingTerrain(self):
         namesBuildingTerrain = ["Flat", "Hillside"]
         return namesBuildingTerrain[self.buildingTerrain-1]
-
+    # Return dictionary to display class in template
     def templateBuildingInformation(self):
-        return {"buildingUsage": self.nameBuildingUsage(),
+        return {"uID": self.uID, "buildingUsage": self.nameBuildingUsage(),
         "buildingType": self.nameBuildingType(), "buildingCubicMeters": self.buildingCubicMeters, 
         "buildingConstructionType": self.nameBuildingConstructionType(), "buildingStandard": self.nameBuildingStandard(), 
         "buildingTerrain": self.nameBuildingTerrain(), "buildingValue": self.valueCalculate()}
