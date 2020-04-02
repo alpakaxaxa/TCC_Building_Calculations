@@ -1,30 +1,50 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title>Finally New</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
-
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<style>
-  .container {
-    width:80%;
-    height:100%;
-    background-color:azure;
-  }
-</style>
+
 <body>
+  <navbar>
+    <div class="navbar">
+      <div class="navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/view">Calculations</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo_modern.png') }}" width="250">
+      </div>
+    </div>
+  </navbar>
   <div class="container">
-    <h2>View</h>
-    {%for record in records %} 
-  
-    <li>{{ record['buildingCubicMeters'] }}, {{ record['buildingType'] }}</li> 
-{%endfor%} 
+    <div>
+      <h1>Calculate Construction Costs</h1>
+    </div>
+    <div>
+      <h3>{{ records[0]['buildingCubicMeters'] }}, {{ records[0]['buildingType'] }}</h3>
+    </div>
+    <div>
+    {% for i in range(1, records|length) %}
+      <li><a href="#">{{ records[i]['buildingCubicMeters'] }}, {{ records[i]['buildingValue'] }}</a></li>
+    {% endfor %}
+    </div>
   </div>
+  <script src="{{ url_for('static', filename='js/id.js') }}"></script>
+  </script>
+
 </body>
+
 </html>
+
