@@ -34,6 +34,17 @@ class BuildingInformationData:
                 json.dump(fileContent, file)
             return uID
 
+    def updateRecord(self, uID, newBuildingUsage, newBuildingType, newBuildingCubicMeters, 
+    newBuildingConstructionType, newBuildingStandard, newBuildingTerrain):
+        if self.isValidRecord(newBuildingCubicMeters, newBuildingType): #add additional parameters
+            fileContent = self.fileData()
+            with open(self.filePath, 'w') as file:
+                fileContent['data'][uID] = {'buildingUsage': newBuildingUsage, 'buildingType': newBuildingType, 
+                'buildingCubicMeters': newBuildingCubicMeters, 'buildingConstructionType': newBuildingConstructionType, 
+                'buildingStandard': newBuildingStandard, 'buildingTerrain': newBuildingTerrain}
+                json.dump(fileContent, file)
+            return uID
+
     def buildingInformationRecord(self, uID):
         buildingInformationEntries = self.buildingInformation()
         buildingInformationRecord = None

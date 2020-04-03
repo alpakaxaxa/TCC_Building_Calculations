@@ -33,6 +33,15 @@ def addRecord():
         response = cookieSet(response, request.cookies, uID)
         return response
 
+@app.route('/updateRecord', methods=["POST"])
+def updateRecord():
+    if request.method == "POST":
+        buildingInformationData = buildingInformation.BuildingInformationData('data.json')
+        uID = buildingInformationData.updateRecord(request.form['uID'], int(request.form['buildingUsage']), int(request.form['buildingType']), 
+        int(request.form['buildingCubicMeters']), int(request.form['buildingConstructionType']), 
+        int(request.form['buildingStandard']), int(request.form['buildingTerrain']))
+        return make_response(redirect(url_for('view')))
+
 def cookieSet(response, cookiesDictionary, uID):
     timeStamp = str(datetime.now())
     cookies = []
