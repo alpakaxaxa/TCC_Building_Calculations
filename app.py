@@ -60,10 +60,8 @@ def cookieGetRecordUIDs(cookiesDictionary):
     for key in cookiesDictionary:
         cookies.append(key)
     cookies.sort(reverse=True)
-    print(cookies)
     for cookie in cookies:
         cookieRecordUIDs.append(cookiesDictionary[cookie])
-    print(cookieRecordUIDs)
     return cookieRecordUIDs
 
 if __name__ == '__main__':

@@ -121,7 +121,7 @@ class BuildingInformation:
         return {"uID": self.uID, "buildingUsage": self.nameBuildingUsage(),
         "buildingType": self.nameBuildingType(), "buildingCubicMeters": self.buildingCubicMeters, 
         "buildingConstructionType": self.nameBuildingConstructionType(), "buildingStandard": self.nameBuildingStandard(), 
-        "buildingTerrain": self.nameBuildingTerrain(), "buildingValue": self.valueCalculate()}
+        "buildingTerrain": self.nameBuildingTerrain(), "buildingValue": "CHF {:,.2f}".format(self.valueCalculate())}
 
 
     def __str__(self):

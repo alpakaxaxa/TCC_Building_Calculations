@@ -37,14 +37,12 @@
     </div>
     <div>
     {% for i in range(1, records|length) %}
-      <li><a href="/?uID={{ records[i]['uID'] }}">Usage: {{ records[i]['buildingUsage'] }}, Cubic Meters: {{ records[i]['buildingCubicMeters'] }}, Value: {{ records[i]['buildingValue'] }}</a></li>
+      <li><a href="/?uID={{ records[i]['uID'] }}">Usage: {{ records[i]['buildingUsage'] }}, Cubic Meters: {{ records[i]['buildingCubicMeters'] }}, Value: <span>{{ records[i]['buildingValue'] }}</span></a></li>
     {% endfor %}
     </div>
   </div>
   <script src="{{ url_for('static', filename='js/id.js') }}"></script>
   </script>
-
 </body>
-
 </html>
 
