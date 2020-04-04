@@ -71,6 +71,13 @@ class BuildingInformationData:
 
 # Class to manage and calculate price of buildings
 class BuildingInformation:
+    USAGE = [1.3,1.1,0.9,0.7]
+    TYPE = [1.3,0.8,1.1]
+    PRICE_CUBIC_METERS = 70
+    CONSTRUCTION_TYPE = [1,0.9,1.1]
+    STANDARD = [0.8,1,1.2]
+    TERRAIN = [1,1.3]
+    
     def __init__(self, uID, buildingUsage, buildingType, buildingCubicMeters, 
     buildingConstructionType, buildingStandard, buildingTerrain):
         self.uID = uID
@@ -82,10 +89,16 @@ class BuildingInformation:
         self.buildingTerrain = buildingTerrain
     # 1000 is placeholder value as calculation not yet defined
     def valueCalculate(self):
-        return 1000
+        cubic_meter_price = self.PRICE_CUBIC_METERS*self.buildingCubicMeters
+        usage_mult = self.USAGE[self.buildingUsage-1]
+        type_mult = self.TYPE[self.buildingType-1]
+        construction_type_mult = self.CONSTRUCTION_TYPE[self.buildingConstructionType-1]
+        standard_mult = self.STANDARD[self.buildingStandard-1]
+        terrain_mult = self.TERRAIN[self.buildingTerrain-1]
+        return cubic_meter_price*usage_mult*type_mult*construction_type_mult*standard_mult*terrain_mult
 
     def nameBuildingUsage(self):
-        namesBuildingUsage = ["Family house", "Multi family house (3-4 Units)", "Multi generation house", "Muliti family house (6-12 units)"]
+        namesBuildingUsage = ["Family house", "Multi family house (3-4 Units)", "Multi generation house", "Multi family house (6-12 units)"]
         return namesBuildingUsage[self.buildingUsage-1]
     
     def nameBuildingType(self):
