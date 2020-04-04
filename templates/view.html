@@ -32,11 +32,11 @@
       <h1>Calculate Construction Costs</h1>
     </div>
     <div>
-      <h3><a href="/?uID={{ records[0]['uID'] }}">Usage: {{ records[0]['buildingUsage'] }}, Cubic Meters: {{ records[0]['buildingCubicMeters'] }}, Value: {{ records[0]['buildingValue'] }}</a></h3>
+      <h3><a href="/?uID={{ records[0]['uID'] }}">Newest entry: {{ records[0]['buildingUsage'] }}, Cubic Meters: {{ records[0]['buildingCubicMeters'] }}, Value: <strong>{{ records[0]['buildingValue'] }}</strong></a></h3>
     </div>
     <div>
     {% for i in range(1, records|length) %}
-      <li><a href="/?uID={{ records[i]['uID'] }}">Usage: {{ records[i]['buildingUsage'] }}, Cubic Meters: {{ records[i]['buildingCubicMeters'] }}, Value: <span>{{ records[i]['buildingValue'] }}</span></a></li>
+      <li class="record"><a href="/?uID={{ records[i]['uID'] }}">Earlier entry {{ i }}: {{ records[i]['buildingUsage'] }}, Cubic Meters: {{ records[i]['buildingCubicMeters'] }}, Value: <strong>{{ records[i]['buildingValue'] }}</strong></a></li>
     {% endfor %}
     </div>
   </div>

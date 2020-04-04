@@ -41,7 +41,7 @@
             <option value="3" {% if record.buildingUsage == 3 %}selected{% endif %}>Multi generation house</option>
             <option value="4" {% if record.buildingUsage == 4 %}selected{% endif %}>Multi family house (6-12 units)</option>
           </select>
-          <label for="buildingUsage">What do you want</label>
+          <label for="buildingUsage">Specify what kind of building you want</label>
         </div>
         <div class="formField">
           <select name="buildingType" id="buildingType" value="{{ record.buildingType }}" class="input">
@@ -49,11 +49,11 @@
             <option value="2" {% if record.buildingType == 2 %}selected{% endif %}>Conversion</option>
             <option value="3" {% if record.buildingType == 3 %}selected{% endif %}>Extension</option>
           </select>
-          <label for="buildingType">What do you want</label>
+          <label for="buildingType">Specify the type of building measure</label>
         </div>
         <div class="formField">
           <input type="number" name="buildingCubicMeters" id="buildingCubicMeters" value="{{ record.buildingCubicMeters }}" class="input">
-          <label for="buildingCubicMeters">How many Cubic Meters</label>
+          <label for="buildingCubicMeters">Specify how many cubic meters</label>
         </div>
         <div class="formField">
           <select name="buildingConstructionType" id="buildingConstructionType" value="{{ record.buildingConstructionType }}" class="input">
@@ -61,7 +61,7 @@
             <option value="2" {% if record.buildingConstructionType == 2 %}selected{% endif %}>Timber construction</option>
             <option value="3" {% if record.buildingConstructionType == 3 %}selected{% endif %}>Steel construction</option>
           </select>
-          <label for="buildingConstructionType">What do you want</label>
+          <label for="buildingConstructionType">Specify the construction type</label>
         </div>
         <div class="formField">
           <select name="buildingStandard" id="buildingStandard" value="{{ record.buildingStandard }}" class="input">
@@ -69,14 +69,14 @@
             <option value="2" {% if record.buildingStandard == 2 %}selected{% endif %}>Medium</option>
             <option value="3" {% if record.buildingStandard == 3 %}selected{% endif %}>High</option>
           </select>
-          <label for="buildingStandard">What do you want</label>
+          <label for="buildingStandard">Specify the building standard</label>
         </div>
         <div class="formField">
           <select name="buildingTerrain" id="buildingTerrain" value="{{ record.buildingTerrain }}" class="input">
             <option value="1" {% if record.buildingTerrain == 1 %}selected{% endif %}>Flat</option>
             <option value="2" {% if record.buildingTerrain == 2 %}selected{% endif %}>Hillside</option>
           </select>
-          <label for="buildingType">What do you want</label>
+          <label for="buildingType">Specify the terrain</label>
         </div>
         <div class="formField">
           <input type="submit" value="{% if record %}Update{% else %}Add Record{% endif %}">
@@ -84,8 +84,7 @@
       </form>
     </div>
   </div>
-  <script src="{{ url_for('static', filename='js/id.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/store.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/convenientInput.js') }}"></script>
 
 </body>
 

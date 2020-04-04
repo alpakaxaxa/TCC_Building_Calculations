@@ -1,5 +1,7 @@
 window.addEventListener("load", checkQueryString);
-
+window.addEventListener("load", resetStorage)
+// Check if uID query parameter is given. If uID is specified, 
+// form fields should be populated by flask and not javascript
 function checkQueryString() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -17,7 +19,17 @@ document.addEventListener('change', function (e) {
 
 function populateFormWithLocalStorage() {
     let elems = document.getElementsByClassName("input");
-    for (i=0;i<elems.length;i++) {
+    for (i = 0; i < elems.length; i++) {
         elems[i].value = localStorage.getItem(elems[i].name);
     }
+}
+
+function resetStorage() {
+    const form = document.getElementById('buildingInformationForm');
+    form.addEventListener('submit', function() {
+        localStorage.clear();
+        // Return true to execute form submission
+        alert("Local storage has been cleared")
+        return true
+    });
 }
