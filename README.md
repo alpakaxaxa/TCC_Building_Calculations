@@ -15,7 +15,7 @@ Only Flask and the python standard library
 - [x] It uses at least one module from the Python Standard Library other than the random module.
   Please provide the name of the module you are using in your app.
   - Module name: datetime, json, uuid, os
-- [] It contains at least one class written by you that has both properties and methods.
+- [x] It contains at least one class written by you that has both properties and methods.
   This includes instantiating the class and using the methods in your app.
   Please provide below the file name and the line number(s) of at least one example of a class definition in your code.
   - File name: buildingInformation.py
