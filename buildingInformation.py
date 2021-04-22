@@ -6,25 +6,29 @@ import os
 class BuildingInformationData:
     def __init__(self, filePath):
         self.filePath = filePath
-    # Check if file has content. Additional checks to be implemented
+    
+    # Check if file has content. TODO add additional checks
     def initFile(self):
         if os.stat(self.filePath).st_size == 0:
             with open(self.filePath, 'w') as file:
                 jsonTemplate = {'data': {}}
                 json.dump(jsonTemplate, file)
+    
     # Return raw file data
     def fileData(self):
         fileContent = self.initFile()
         with open(self.filePath, 'r') as file:
             fileContent = json.load(file)
         return fileContent
+    
     # Check record validity 
     def isValidRecord(self, buildingCubicMeters, buildingType):
-        # TODO implement check according to logic that is to be defined
+        # TODO implement validation check according to logic that is to be defined
         return True
+    
     # Add building information user entry to the json file
     def addRecord(self, buildingUsage, buildingType, buildingCubicMeters, buildingConstructionType, buildingStandard, buildingTerrain):
-        if self.isValidRecord(buildingCubicMeters, buildingType): #add additional parameters
+        if self.isValidRecord(buildingCubicMeters, buildingType): #add additional parameters according to TODO
             fileContent = self.fileData()
             uID = str(uuid.uuid1())
             with open(self.filePath, 'w') as file:
@@ -33,10 +37,11 @@ class BuildingInformationData:
                 'buildingStandard':buildingStandard, 'buildingTerrain': buildingTerrain}
                 json.dump(fileContent, file)
             return uID
+    
     # Update existing record
     def updateRecord(self, uID, newBuildingUsage, newBuildingType, newBuildingCubicMeters, 
     newBuildingConstructionType, newBuildingStandard, newBuildingTerrain):
-        if self.isValidRecord(newBuildingCubicMeters, newBuildingType): #add additional parameters
+        if self.isValidRecord(newBuildingCubicMeters, newBuildingType): #add additional parameters according to TODO
             fileContent = self.fileData()
             with open(self.filePath, 'w') as file:
                 fileContent['data'][uID] = {'buildingUsage': newBuildingUsage, 'buildingType': newBuildingType, 
@@ -44,6 +49,7 @@ class BuildingInformationData:
                 'buildingStandard': newBuildingStandard, 'buildingTerrain': newBuildingTerrain}
                 json.dump(fileContent, file)
             return uID
+    
     # Find a building information record
     def buildingInformationRecord(self, uID):
         buildingInformationEntries = self.buildingInformation()
@@ -53,12 +59,14 @@ class BuildingInformationData:
                 buildingInformationRecord = buildingInformation
                 break
         return buildingInformationRecord
+    
     # Return multiple building information records saved in json file
     def buildingInformationRecords(self, uIDList):
         buildingInformationRecords = []
         for uID in uIDList:
             buildingInformationRecords.append(self.buildingInformationRecord(uID))
         return buildingInformationRecords
+    
     # Return all building information records saved in json file
     def buildingInformation(self):
         buildingInformationEntries = []
@@ -88,6 +96,7 @@ class BuildingInformation:
         self.buildingConstructionType = buildingConstructionType
         self.buildingStandard = buildingStandard
         self.buildingTerrain = buildingTerrain
+    
     # Calculation process is realistic but multipliers are made up
     def valueCalculate(self):
         cubic_meter_price = self.PRICE_CUBIC_METERS*self.buildingCubicMeters
@@ -97,6 +106,7 @@ class BuildingInformation:
         standard_mult = self.STANDARD[self.buildingStandard-1]
         terrain_mult = self.TERRAIN[self.buildingTerrain-1]
         return cubic_meter_price*usage_mult*type_mult*construction_type_mult*standard_mult*terrain_mult
+    
     # The name methods are convenience functions to transform integer values into corresponding template names
     def nameBuildingUsage(self):
         namesBuildingUsage = ["Family house", "Multi family house (3-4 Units)", "Multi generation house", "Multi family house (6-12 units)"]
@@ -117,6 +127,7 @@ class BuildingInformation:
     def nameBuildingTerrain(self):
         namesBuildingTerrain = ["Flat", "Hillside"]
         return namesBuildingTerrain[self.buildingTerrain-1]
+    
     # Return dictionary to display class in template
     def templateBuildingInformation(self):
         return {"uID": self.uID, "buildingUsage": self.nameBuildingUsage(),

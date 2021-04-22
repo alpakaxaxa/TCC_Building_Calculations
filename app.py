@@ -5,6 +5,7 @@ import buildingInformation
 from buildingInformation import BuildingInformation
 app = Flask(__name__)
 
+# Initial building information form is displayed here
 @app.route('/')
 def index():
     uID = request.args.get('uID')
@@ -12,6 +13,7 @@ def index():
     record = buildingInformationData.buildingInformationRecord(uID)
     return render_template('index.html', record=record)
 
+# Shows the last 3 records added by the user
 @app.route('/view')
 def view():
     cookieRecordUIDs = cookieGetRecordUIDs(request.cookies)
@@ -22,6 +24,7 @@ def view():
         templateRecords.append(record.templateBuildingInformation())
     return render_template('view.html', records=templateRecords)
 
+# Route for adding new records
 @app.route('/addRecord', methods=["POST"])
 def addRecord():
     if request.method == "POST":
@@ -33,6 +36,7 @@ def addRecord():
         response = cookieSet(response, request.cookies, uID)
         return response
 
+# Route for updating existing records
 @app.route('/updateRecord', methods=["POST"])
 def updateRecord():
     if request.method == "POST":
@@ -42,18 +46,21 @@ def updateRecord():
         int(request.form['buildingStandard']), int(request.form['buildingTerrain']))
         return make_response(redirect(url_for('view')))
 
+# Set a cookie in order to associate records with its respective user/author
 def cookieSet(response, cookiesDictionary, uID):
     timeStamp = str(datetime.now())
     cookies = []
     for key in cookiesDictionary:
         cookies.append(key)
         if len(cookies) == 3:
+            # Sort the array in order to delete the oldest entry (as default sorting is ascending and oldest timestamp has the lowest value)
             cookies.sort()
             response.set_cookie(cookies[0], '', expires=0)
             break
     response.set_cookie(timeStamp, uID)
     return response
 
+# Fetch records based on user cookies
 def cookieGetRecordUIDs(cookiesDictionary):
     cookieRecordUIDs = []
     cookies = []

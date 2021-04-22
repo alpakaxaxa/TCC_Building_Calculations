@@ -19,6 +19,7 @@ function checkQueryString() {
     }
 }
 
+// Prepopulate the form with local storage data so that user already has a working blueprint for his record
 function populateFormWithLocalStorage() {
     let elems = document.getElementsByClassName("input");
     for (i = 0; i < elems.length; i++) {
@@ -26,6 +27,7 @@ function populateFormWithLocalStorage() {
     }
 }
 
+// Function to reset local storage upon form submission
 function resetStorage() {
     // TODO Usertests are needed in order to evaluate if reset of local storage is needed
     const form = document.getElementById('buildingInformationForm');
