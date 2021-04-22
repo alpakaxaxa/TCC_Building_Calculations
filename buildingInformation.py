@@ -20,7 +20,7 @@ class BuildingInformationData:
         return fileContent
     # Check record validity 
     def isValidRecord(self, buildingCubicMeters, buildingType):
-        # implement check
+        # TODO implement check according to logic that is to be defined
         return True
     # Add building information user entry to the json file
     def addRecord(self, buildingUsage, buildingType, buildingCubicMeters, buildingConstructionType, buildingStandard, buildingTerrain):
@@ -123,7 +123,6 @@ class BuildingInformation:
         "buildingType": self.nameBuildingType(), "buildingCubicMeters": self.buildingCubicMeters, 
         "buildingConstructionType": self.nameBuildingConstructionType(), "buildingStandard": self.nameBuildingStandard(), 
         "buildingTerrain": self.nameBuildingTerrain(), "buildingValue": "CHF {:,.2f}".format(self.valueCalculate())}
-
 
     def __str__(self):
         return 'BuildingInformation(uID: '+str(self.uID)+', buildingType: '+ self.buildingType + ')'

@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Finally New</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <navbar>
+        <div class="navbar">
+            <div class="navigation">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/view">Calculations</a></li>
+                </ul>
+            </div>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo_modern.png') }}" width="250">
+            </div>
+        </div>
+    </navbar>
+    <div class="container">
+        <div>
+            <h1>Statistics</h1>
+        </div>
+        <div class="chart">
+            <canvas id="buildingStandard"></canvas>
+        </div>
+    </div>
+    <script>
+        const data = {
+            labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+            ],
+            datasets: [{
+                label: 'Building standard',
+                fontColor: '#fff',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+        const config = {
+            type: 'doughnut',
+            data: data,
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 14,
+                                fontColor: "white"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        let standard = new Chart(
+            document.getElementById('buildingStandard'),
+            config
+        );
+        standard.defaults.global.defaultFontColor = "#fff";
+    </script>
+</body>
+
+</html>

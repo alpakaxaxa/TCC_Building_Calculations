@@ -27,6 +27,7 @@
       </div>
     </div>
   </navbar>
+  {% if (records is defined) and records %}
   <div class="container">
     <div>
       <h1>Calculate Construction Costs</h1>
@@ -40,8 +41,11 @@
     {% endfor %}
     </div>
   </div>
-  <script src="{{ url_for('static', filename='js/id.js') }}"></script>
-  </script>
+  {% else %}
+  <div class="container">
+    <h3><a href="/">Create an entry first</a></h3>
+  </div>
+  {% endif %}
 </body>
 </html>
 
