@@ -20,35 +20,31 @@ class BuildingInformationData:
         with open(self.filePath, 'r') as file:
             fileContent = json.load(file)
         return fileContent
-    
-    # Check record validity 
-    def isValidRecord(self, buildingCubicMeters, buildingType):
-        # TODO implement validation check according to logic that is to be defined
-        return True
+
     
     # Add building information user entry to the json file
     def addRecord(self, buildingUsage, buildingType, buildingCubicMeters, buildingConstructionType, buildingStandard, buildingTerrain):
-        if self.isValidRecord(buildingCubicMeters, buildingType): #add additional parameters according to TODO
-            fileContent = self.fileData()
-            uID = str(uuid.uuid1())
-            with open(self.filePath, 'w') as file:
-                fileContent['data'][uID] = {'buildingUsage': buildingUsage, 'buildingType': buildingType, 
-                'buildingCubicMeters': buildingCubicMeters, 'buildingConstructionType':buildingConstructionType, 
-                'buildingStandard':buildingStandard, 'buildingTerrain': buildingTerrain}
-                json.dump(fileContent, file)
-            return uID
+        # if self.isValidRecord(buildingCubicMeters, buildingType): #add additional parameters according to TODO
+        fileContent = self.fileData()
+        uID = str(uuid.uuid1())
+        with open(self.filePath, 'w') as file:
+            fileContent['data'][uID] = {'buildingUsage': buildingUsage, 'buildingType': buildingType, 
+            'buildingCubicMeters': buildingCubicMeters, 'buildingConstructionType':buildingConstructionType, 
+            'buildingStandard':buildingStandard, 'buildingTerrain': buildingTerrain}
+            json.dump(fileContent, file)
+        return uID
     
     # Update existing record
     def updateRecord(self, uID, newBuildingUsage, newBuildingType, newBuildingCubicMeters, 
     newBuildingConstructionType, newBuildingStandard, newBuildingTerrain):
-        if self.isValidRecord(newBuildingCubicMeters, newBuildingType): #add additional parameters according to TODO
-            fileContent = self.fileData()
-            with open(self.filePath, 'w') as file:
-                fileContent['data'][uID] = {'buildingUsage': newBuildingUsage, 'buildingType': newBuildingType, 
-                'buildingCubicMeters': newBuildingCubicMeters, 'buildingConstructionType': newBuildingConstructionType, 
-                'buildingStandard': newBuildingStandard, 'buildingTerrain': newBuildingTerrain}
-                json.dump(fileContent, file)
-            return uID
+        # if self.isValidRecord(newBuildingCubicMeters, newBuildingType): #add additional parameters according to TODO
+        fileContent = self.fileData()
+        with open(self.filePath, 'w') as file:
+            fileContent['data'][uID] = {'buildingUsage': newBuildingUsage, 'buildingType': newBuildingType, 
+            'buildingCubicMeters': newBuildingCubicMeters, 'buildingConstructionType': newBuildingConstructionType, 
+            'buildingStandard': newBuildingStandard, 'buildingTerrain': newBuildingTerrain}
+            json.dump(fileContent, file)
+        return uID
     
     # Find a building information record
     def buildingInformationRecord(self, uID):

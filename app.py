@@ -1,8 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, make_response
 from datetime import datetime
-import json
 import buildingInformation
-from buildingInformation import BuildingInformation
 app = Flask(__name__)
 
 # Initial building information form is displayed here
@@ -19,7 +17,7 @@ def view():
     cookieRecordUIDs = cookieGetRecordUIDs(request.cookies)
     buildingInformationData = buildingInformation.BuildingInformationData('data.json')
     records = buildingInformationData.buildingInformationRecords(cookieRecordUIDs)
-    templateRecords = []
+    templateRecords = [] 
     for record in records:
         templateRecords.append(record.templateBuildingInformation())
     return render_template('view.html', records=templateRecords)
